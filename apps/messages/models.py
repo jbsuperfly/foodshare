@@ -11,3 +11,4 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     message_creator = models.ForeignKey(User)
+    
