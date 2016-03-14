@@ -14,8 +14,8 @@ class Food(models.Model):
     instructions = models.TextField
     date_made = models.DateTimeField
     condition = models.CharField(max_length=255)
-    shelf_life = models.models.CharField(max_length=255)
+    shelf_life = models.CharField(max_length=255)
     picture = models.ImageField
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    message_creator = models.ForeignKey(User)
+    food_creator = models.ForeignKey(User)

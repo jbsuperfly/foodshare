@@ -7,8 +7,8 @@ import datetime
 # Create your models here.
 @python_2_unicode_compatible
 class Review(models.Model):
-    rating = models.
+    rating = models.PositiveSmallIntegerField
     review = models.Textfield
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    message_creator = models.ForeignKey(User)
+    review_creator = models.ForeignKey(User)
