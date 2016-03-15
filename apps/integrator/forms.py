@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms.fields import DateField
 from django.contrib.auth.forms import UserCreationForm
-# from .models import Wall_User, Wall_Comment, Wall_Message
+from .models import Confirmation, Food, Message, Review, User
 
 class UserFormRegistration(UserCreationForm):
     first_name = forms.CharField(label = 'First Name')
@@ -31,7 +31,7 @@ class updateUserForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'intro', 'email', 'phone', 'location')
     def update(self, commit=True):
-        
+
 class foodForm(forms.ModelForm):
     title = forms.CharField(label = 'Title')
     description = forms.TextField(label = 'Description')
