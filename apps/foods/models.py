@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.db import models
 import datetime
 # Create your models here.
+
 @python_2_unicode_compatible
 class Food(models.Model):
     title = models.CharField(max_length=255)

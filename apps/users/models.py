@@ -4,13 +4,14 @@ from django.utils import timezone
 from django.db import models
 import datetime
 # Create your models here.
+
 @python_2_unicode_compatible
 class User(models.Model):
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45)
     intro = models.TextField
     email = models.EmailField(max_length=255)
-    password = models.CharField(max_length=45)
+    password = models.SlugField(max_length=45)
     phone = models.PositiveIntegerField
     location = models.CharField(max_length=255)
     business = models.BooleanField

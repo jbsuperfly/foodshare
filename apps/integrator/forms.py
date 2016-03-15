@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.forms.fields import DateField
 from django.contrib.auth.forms import UserCreationForm
 from .models import Confirmation, Food, Message, Review, User
+# Create your forms here.
 
 class UserFormRegistration(UserCreationForm):
     first_name = forms.CharField(label = 'First Name')
@@ -17,20 +18,26 @@ class UserFormRegistration(UserCreationForm):
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
         user.password(self.cleaned_data['password'])
+        if commit:
+            user.save()
+            User.objects.create(user = user)
+        return user
+
 class updateUserForm(forms.ModelForm):
-    first_name = models.CharField(label = 'First Name')
-    last_name = models.CharField(label = 'Last Name')
-    intro = models.TextField(label = 'Intro')
-    email = models.EmailField(label = 'Email')
-    password = models.CharField(label = 'Password')
-    phone = models.PositiveIntegerField(label = 'Phone')
-    location = models.CharField(label = 'Location')
-    business = models.BooleanField
-    individual = models.BooleanField
+    first_name = forms.CharField(label = 'First Name')
+    last_name = forms.CharField(label = 'Last Name')
+    intro = forms.TextField(label = 'Intro')
+    email = forms.EmailField(label = 'Email')
+    password = forms.SlugField(label = 'Password')
+    phone = forms.PositiveIntegerField(label = 'Phone')
+    location = forms.CharField(label = 'Location')
+    business = forms.BooleanField
+    individual = forms.BooleanField
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'intro', 'email', 'phone', 'location')
+        fields = ('first_name', 'last_name', 'intro', 'email', 'password' 'phone', 'location')
     def update(self, commit=True):
+        user = super(updateUserForm, self).save(commit=False)
 
 class foodForm(forms.ModelForm):
     title = forms.CharField(label = 'Title')
@@ -56,11 +63,21 @@ class foodForm(forms.ModelForm):
             food.condition = self.cleaned_data['condition']
             food.shelf_life = self.cleaned_data['shelf_life']
             food.picture = self.cleaned_data['picture']
+
 class messageForm(forms.ModelForm):
+    message = forms.TextField(label = 'Message')
     class Meta:
         model = Message
         fields = ('message')
+
 class reviewForm(forms.ModelForm):
+    review = forms.TextField(label = 'Review')
     class Meta:
         model = Review
         fields = ('rating', 'review')
+
+class confirmationForm(forms.ModelForm):
+    email = forms.EmailField(label = 'Email')
+    class Meta:
+        model = Confirmation
+        fields = ('email')
