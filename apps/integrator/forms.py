@@ -17,6 +17,21 @@ class UserFormRegistration(UserCreationForm):
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
         user.password(self.cleaned_data['password'])
+class updateUserForm(forms.ModelForm):
+    first_name = models.CharField(label = 'First Name')
+    last_name = models.CharField(label = 'Last Name')
+    intro = models.TextField(label = 'Intro')
+    email = models.EmailField(label = 'Email')
+    password = models.CharField(label = 'Password')
+    phone = models.PositiveIntegerField(label = 'Phone')
+    location = models.CharField(label = 'Location')
+    business = models.BooleanField
+    individual = models.BooleanField
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'intro', 'email', 'phone', 'location')
+    def update(self, commit=True):
+        
 class foodForm(forms.ModelForm):
     title = forms.CharField(label = 'Title')
     description = forms.TextField(label = 'Description')
@@ -28,7 +43,7 @@ class foodForm(forms.ModelForm):
     shelf_life = forms.forms.CharField(label = 'Shelf Life')
     picture = forms.ImageField(label = 'Picture')
     class Meta:
-        model =
+        model = Food
         fields = ('title', 'description', 'location', 'pickup_window', 'instructions', 'date_made', 'condition', 'shelf_life', 'picture')
         def save(self, commit=True):
             food = super(foodForm, self).save(commit=False)
@@ -43,9 +58,9 @@ class foodForm(forms.ModelForm):
             food.picture = self.cleaned_data['picture']
 class messageForm(forms.ModelForm):
     class Meta:
-        model =
+        model = Message
         fields = ('message')
 class reviewForm(forms.ModelForm):
     class Meta:
-        model =
+        model = Review
         fields = ('rating', 'review')
