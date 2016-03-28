@@ -1,5 +1,5 @@
 rom django.shortcuts import render, redirect
-from django.contrib.auth import forms,login,authenticate,logout
+from django.contrib.auth import forms, login, authenticate, logout
 from django.views.generic import View
 from django.contrib.auth.models import User
 from .forms import UserFormRegistration,messageForm, commentForm

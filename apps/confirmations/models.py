@@ -8,7 +8,6 @@ import datetime
 
 @python_2_unicode_compatible
 class Confirmation(models.Model):
-    confirmation = models.BooleanField
+    confirmation = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    food_creator = models.ForeignKey(User)
-    food_recipient = models.ForeignKey(User)
+    updated_at = models.DateTimeField(auto_now_add=True)

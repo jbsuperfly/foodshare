@@ -14,7 +14,7 @@ class User(models.Model):
     password = models.SlugField(max_length=45)
     phone = models.PositiveIntegerField
     location = models.CharField(max_length=255)
-    business = models.BooleanField
-    individual = models.BooleanField
+    business = models.BooleanField(default=False)
+    individual = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

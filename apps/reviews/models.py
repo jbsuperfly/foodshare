@@ -12,4 +12,4 @@ class Review(models.Model):
     review = models.Textfield
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    review_creator = models.ForeignKey(User)
+    

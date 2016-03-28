@@ -17,6 +17,7 @@ class Food(models.Model):
     condition = models.CharField(max_length=255)
     shelf_life = models.CharField(max_length=255)
     picture = models.ImageField
+    amount = models.PositiveIntegerField
+    status = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    food_creator = models.ForeignKey(User)

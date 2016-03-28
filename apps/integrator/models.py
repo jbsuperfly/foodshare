@@ -12,19 +12,15 @@ Review = apps.get_app_config('reviews').models['reviews']
 User = apps.get_app_config('users').models['users']
 
 class Confirmation(models.Model):
-    confirmation = models.ManyToOneField(User)
-    confirmation = models.ManyToOneField(Food)
-    confirmation = models.OneToOneField(Review)
+    donor_id = models.ForeignKeyField(User)
+    recipient_id = models.ForeignKeyField(User)
+    food_id = models.ForeignKeyField(Food)
 class Food(models.Model):
-    food = models.OneToManyField(Conformation)
-    food = models.OneToManyField(Message)
-    food = models.ManyToOneField(User)
+    donor_id = models.ForeignKeyField(User)
 class Message(models.Model):
-    message = models.ManyToOneField(User)
-    message = models.ManyToOneField(Food)
+    donor_id = models.ForeignKeyField(User)
+    recipient_id = models.ForeignKeyField(User)
+    food_id = models.ForeignKeyField(Food)
 class Review(models.Model):
-    review = models.OneToOneField(Confirmation)
+    confirmation_id = models.OneToOneField(Confirmation)
 class User(models.Model):
-    user = models.OneToManyField(Food)
-    user = models.OneToManyField(Conformation)
-    user = models.OneToManyField(Message)
