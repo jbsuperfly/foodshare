@@ -9,5 +9,6 @@ import datetime
 @python_2_unicode_compatible
 class Confirmation(models.Model):
     confirmation = models.BooleanField(default=False)
+    amount = models.PositiveIntegerField
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)

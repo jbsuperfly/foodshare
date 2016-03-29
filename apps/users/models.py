@@ -15,6 +15,6 @@ class User(models.Model):
     phone = models.PositiveIntegerField
     location = models.CharField(max_length=255)
     business = models.BooleanField(default=False)
-    individual = models.BooleanField(default=False)
+    individual = models.BooleanFieldv(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -69,15 +69,28 @@ class messageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ('message')
+    def save(self, commit=True):
+        message = super(messageForm, self).save(commit=False)
+        message.message = self.cleaned_data['message']
+
+class confirmationForm(forms.ModelForm):
+    email = forms.EmailField(label = 'Email')
+    amount = forms.PositiveSmallIntegerField(label = 'Amount')
+    class Meta:
+        model = Confirmation
+        fields = ('email', 'amount')
+    def save(self, commit=True):
+        review = super(confirmationForm, self).save(commit=False)
+        review.rating = self.cleaned_data['email']
+        review.review = self.cleaned_data['amount']
 
 class reviewForm(forms.ModelForm):
+    rating = forms.PositiveSmallIntegerField
     review = forms.TextField(label = 'Review')
     class Meta:
         model = Review
         fields = ('rating', 'review')
-
-class confirmationForm(forms.ModelForm):
-    email = forms.EmailField(label = 'Email')
-    class Meta:
-        model = Confirmation
-        fields = ('email')
+    def save(self, commit=True):
+        review = super(reviewForm, self).save(commit=False)
+        review.rating = self.cleaned_data['rating']
+        review.review = self.cleaned_data['review']
